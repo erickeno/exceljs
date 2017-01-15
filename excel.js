@@ -1,16 +1,16 @@
 /**
  * Copyright (c) 2014 Guyon Roche
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:</p>
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -18,21 +18,26 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- * 
+ *
  */
 "use strict";
 
-var _ = require("lodash");
+const _ = require("lodash");
+const Workbook = require('./lib/doc/workbook')
+const ModelContainer = require("./lib/doc/modelcontainer");
+const WorkbookWriter = require("./lib/stream/xlsx/workbook-writer");
+const WorkbookReader = require("./lib/stream/xlsx/workbook-reader");
+const enums = require('./lib/doc/enums');
 
-var main = module.exports = {
-    Workbook: require("./lib/doc/workbook"),
-    ModelContainer: require("./lib/doc/modelcontainer"),
-    stream: {
-        xlsx: {
-            WorkbookWriter: require("./lib/stream/xlsx/workbook-writer"),
-            WorkbookReader: require("./lib/stream/xlsx/workbook-reader")
-        }
+let main = module.exports = {
+  Workbook,
+  ModelContainer,
+  stream: {
+    xlsx: {
+      WorkbookWriter,
+      WorkbookReader
     }
+  }
 };
 
-_.extend(main, require("./lib/doc/enums"));
+_.extend(main, enums);
